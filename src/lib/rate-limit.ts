@@ -24,8 +24,8 @@ export function checkRateLimit(
 if (typeof setInterval !== 'undefined') {
   setInterval(() => {
     const now = Date.now();
-    for (const [key, val] of rateLimit.entries()) {
+    Array.from(rateLimit.entries()).forEach(([key, val]) => {
       if (now > val.resetTime) rateLimit.delete(key);
-    }
+    });
   }, 300000);
 }
